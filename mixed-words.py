@@ -4,12 +4,12 @@
 
 import random
 
-WORDLIST = ("codecool", "absztrahálás", "python", "ubuntu", "csibefasirt", "imibot", "pycon")
-
-# Selects a word randomly from WORDLIST.
-word = random.choice(WORDLIST)
-mixed_word = ''.join(random.sample(word,len(word)))
-correct_answer = word
+# Selects a word randomly from imported_wordlist.txt.
+def import_wordlist(filename="imported_wordlist.txt"):
+    word = (random.choice(open("imported_wordlist.txt", 'r').read().splitlines()))
+    mixed_word = ''.join(random.sample(word,len(word)))
+    correct_answer = word
+    return mixed_word, correct_answer
 
 life = 3
 
@@ -25,40 +25,40 @@ print(
 
 print("Max lives:", life, "\n")
 
+mixed_word, correct_answer = import_wordlist()
+
 running = 1
 while running == 1:
-        print("The mixed word is:", mixed_word)
-        user_input = input("Type your answer here: ")
-
-        if user_input != correct_answer:
-                print("Your answer was incorrect. Try again!\n")
-                life -= 1
-                print("You have", life, "lives left.\n")
-                if life == 0:
-                        print(
-                        r"""
-                         _____       ___       ___  ___   _____
-                        /  ___|     /   |     /   |/   | |  ___|
-                        | |        / /| |    / /|   /| | | |__
-                        | |  _    / ___ |   / / |__/ | | |  __|
-                        | |_| |  / /  | |  / /       | | | |___
-                        \_____/ /_/   |_| /_/        |_| |_____|
-                        
-                         _____   _     _   _____   _____
-                        /  _  \ | |   / / |  ___| |  _  \
-                        | | | | | |  / /  | |__   | |_| |
-                        | | | | | | / /   |  __|  |  _  /
-                        | |_| | | |/ /    | |___  | | \ \
-                        \_____/ |___/     |_____| |_|  \_\
-
-                        """
-                        )
-                        quit()
-        elif user_input == correct_answer:
-                word = random.choice(WORDLIST)
-                mixed_word = ''.join(random.sample(word,len(word)))
-                print("Success!!! Your answer:", correct_answer, "was correct.\n")
-                correct_answer = word
-        if user_input == "q":
-           print("Sorry to see you go.")
-           break
+    print("The mixed word is:", mixed_word)
+    user_input = input("Type your answer here: ")
+    if user_input != correct_answer:
+        print("Your answer was incorrect. Try again!\n")
+        life -= 1
+        print("You have", life, "lives left.\n")
+        if life == 0:
+            print(
+            r"""
+             _____       ___       ___  ___   _____
+            /  ___|     /   |     /   |/   | |  ___|
+            | |        / /| |    / /|   /| | | |__
+            | |  _    / ___ |   / / |__/ | | |  __|
+            | |_| |  / /  | |  / /       | | | |___
+            \_____/ /_/   |_| /_/        |_| |_____|
+             _____   _     _   _____   _____
+            /  _  \ | |   / / |  ___| |  _  \
+            | | | | | |  / /  | |__   | |_| |
+            | | | | | | / /   |  __|  |  _  /
+            | |_| | | |/ /    | |___  | | \ \
+            \_____/ |___/     |_____| |_|  \_\
+            """
+            )
+            quit()
+    elif user_input == correct_answer:
+        word = (random.choice(open("imported_wordlist.txt", 'r').read().splitlines()))
+        mixed_word = ''.join(random.sample(word,len(word)))
+        print("Success!!! Your answer:", correct_answer, "was correct.\n")
+        correct_answer = word
+    if user_input == "q":
+        life += life + 1
+        print("Sorry to see you go.")
+        break

@@ -1,0 +1,15 @@
+game
+absztrahálás
+pizza
+eggs
+green
+imibot
+pycon
+bug
+BSoD
+linux
+loop
+append
+ubuntu
+while
+pass
